@@ -35,7 +35,7 @@ class NewsViewModel @Inject constructor(
                 call: Call<HeadLinesModel>,
                 response: Response<HeadLinesModel>
             ) {
-                TODO("Not yet implemented")
+                headLines.value=response.body()
             }
         })
     }

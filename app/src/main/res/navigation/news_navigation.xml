@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_navigation"
+    app:startDestination="@id/breakingNews">
+
+    <fragment
+        android:id="@+id/breakingNews"
+        android:name="com.mustafa.newsappkotlin.ui.BreakingNews"
+        android:label="fragment_breaking_news"
+        tools:layout="@layout/fragment_breaking_news" />
+</navigation>
