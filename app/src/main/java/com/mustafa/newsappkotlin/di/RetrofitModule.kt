@@ -16,7 +16,7 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideNewsService(): NewsApiService? {
+    fun provideNewsService(): NewsApiService {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
