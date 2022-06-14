@@ -9,5 +9,14 @@
         android:id="@+id/breakingNews"
         android:name="com.mustafa.newsappkotlin.ui.BreakingNews"
         android:label="fragment_breaking_news"
-        tools:layout="@layout/fragment_breaking_news" />
+        tools:layout="@layout/fragment_breaking_news" >
+        <action
+            android:id="@+id/action_breakingNews_to_favoritesNews"
+            app:destination="@id/favoritesNews" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesNews"
+        android:name="com.mustafa.newsappkotlin.ui.FavoritesNews"
+        android:label="fragment_favorites_news"
+        tools:layout="@layout/fragment_favorites_news" />
 </navigation>

@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
-import com.mustafa.newsappkotlin.databinding.FragmentBreakingNewsBinding
+import com.mustafa.newsappkotlin.R
+import com.mustafa.newsappkotlin.databinding.FragmentFavoritesNewsBinding
 import com.mustafa.newsappkotlin.models.HeadLinesModel
-import com.mustafa.newsappkotlin.ui.adapters.HeadLinesAdapter
+import com.mustafa.newsappkotlin.ui.adapters.FavoritesAdapter
 import com.mustafa.newsappkotlin.viewModels.NewsViewModel
 
-class BreakingNews : Fragment() {
+
+class FavoritesNews : Fragment() {
     private val newsViewModel: NewsViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -21,30 +22,23 @@ class BreakingNews : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentBreakingNewsBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoritesNewsBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
-    private var _binding: FragmentBreakingNewsBinding? = null
+    private var _binding: FragmentFavoritesNewsBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val headLinesAdapter = HeadLinesAdapter()
-        binding.breakingNewsRecycler.adapter = headLinesAdapter
+        val favoritesAdapter = FavoritesAdapter()
+        binding.favoritesNewsRecycler.adapter = favoritesAdapter
 
         newsViewModel.headLines.observe(viewLifecycleOwner, Observer<HeadLinesModel> { t ->
-            headLinesAdapter.setData(t.articles)
+            favoritesAdapter.setData(t.articles)
         })
-
-
-        binding.goToFavorites.setOnClickListener {
-            val action=BreakingNewsDirections.actionBreakingNewsToFavoritesNews()
-            view.findNavController().navigate(action)
-        }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
