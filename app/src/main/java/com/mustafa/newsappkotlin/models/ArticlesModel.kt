@@ -1,7 +1,13 @@
 package com.mustafa.newsappkotlin.models
 
-class ArticlesModel(
-    val source: Source,
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "favoraties_table")
+data class ArticlesModel(
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    @Ignore val source: Source,
     val author: String,
     val title: String,
     val description: String,
