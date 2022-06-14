@@ -9,9 +9,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.mustafa.newsappkotlin.R
 import com.mustafa.newsappkotlin.databinding.FragmentFavoritesNewsBinding
+import com.mustafa.newsappkotlin.models.ArticlesModel
 import com.mustafa.newsappkotlin.models.HeadLinesModel
 import com.mustafa.newsappkotlin.ui.adapters.FavoritesAdapter
 import com.mustafa.newsappkotlin.viewModels.NewsViewModel
+import kotlinx.coroutines.flow.Flow
 
 
 class FavoritesNews : Fragment() {
@@ -35,8 +37,9 @@ class FavoritesNews : Fragment() {
         val favoritesAdapter = FavoritesAdapter()
         binding.favoritesNewsRecycler.adapter = favoritesAdapter
 
-        newsViewModel.headLines.observe(viewLifecycleOwner, Observer<HeadLinesModel> { t ->
-            favoritesAdapter.setData(t.articles)
+        newsViewModel.getFavNews()
+        newsViewModel.favorites.observe(viewLifecycleOwner, Observer<List<ArticlesModel>> { t ->
+            favoritesAdapter.setData(t)
         })
     }
 

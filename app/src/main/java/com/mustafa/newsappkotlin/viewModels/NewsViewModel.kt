@@ -2,12 +2,14 @@ package com.mustafa.newsappkotlin.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mustafa.newsappkotlin.models.ArticlesModel
 import com.mustafa.newsappkotlin.models.HeadLinesModel
 import com.mustafa.newsappkotlin.repository.NewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,15 +41,23 @@ class NewsViewModel @Inject constructor(
     }
 
     fun insertNewsFav(articlesModel: ArticlesModel) {
-        repository.insertNews(articlesModel)
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertNews(articlesModel)
+        }
     }
 
     fun deleteFromFav(id: Int){
-        repository.deletenews(id)
+        viewModelScope.launch {
+            repository.deletenews(id)
+        }
+
     }
 
     fun getFavNews(){
-        favorites.value=repository.getFavNews()
+        viewModelScope.launch {
+            favorites.postValue(repository.getFavNews())
+        }
+
     }
 
 }

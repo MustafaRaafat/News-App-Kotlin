@@ -16,6 +16,9 @@ class HeadLinesAdapter : RecyclerView.Adapter<HeadLinesAdapter.NewsHolder>() {
         notifyDataSetChanged()
     }
 
+    fun getArticle(position: Int): ArticlesModel {
+        return data[position]
+    }
 
     class NewsHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView

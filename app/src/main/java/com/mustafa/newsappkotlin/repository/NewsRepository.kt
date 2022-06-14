@@ -18,15 +18,15 @@ class NewsRepository @Inject constructor(
         return newsApiService.getHeadLineService("eg", ApiKey)
     }
 
-    fun insertNews(articlesModel: ArticlesModel) {
+    suspend fun insertNews(articlesModel: ArticlesModel) {
         newsDAO.insertNews(articlesModel)
     }
 
-    fun deletenews(id: Int) {
+    suspend fun deletenews(id: Int) {
         newsDAO.deleteNews(id)
     }
 
-    fun getFavNews(): List<ArticlesModel> {
+    suspend fun getFavNews(): List<ArticlesModel> {
         return newsDAO.getnews()
     }
 }
