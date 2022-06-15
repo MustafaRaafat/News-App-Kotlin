@@ -13,10 +13,36 @@
         <action
             android:id="@+id/action_breakingNews_to_favoritesNews"
             app:destination="@id/favoritesNews" />
+        <action
+            android:id="@+id/action_breakingNews_to_newsDetails"
+            app:destination="@id/newsDetails" />
     </fragment>
     <fragment
         android:id="@+id/favoritesNews"
         android:name="com.mustafa.newsappkotlin.ui.FavoritesNews"
         android:label="fragment_favorites_news"
         tools:layout="@layout/fragment_favorites_news" />
+    <fragment
+        android:id="@+id/newsDetails"
+        android:name="com.mustafa.newsappkotlin.ui.NewsDetails"
+        android:label="fragment_news_details"
+        tools:layout="@layout/fragment_news_details" >
+
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true"/>
+        <argument
+            android:name="description"
+            app:argType="string"
+            app:nullable="true"/>
+        <argument
+            android:name="urlToImage"
+            app:argType="string"
+            app:nullable="true"/>
+        <argument
+            android:name="publishedAt"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
